@@ -1,0 +1,18 @@
+services:
+ base:
+  build:
+    context: .
+    dockerfile: Dockerfile
+    args:
+      USERNAME: 
+      USERID: 
+  container_name: fw1-c2-${USERNAME}
+  command: /bin/bash
+  tty: true
+  stdin_open: true
+  volumes:
+  - .:/home/user/workspace
+  ports:
+  - "3030:3030"
+  environment:
+    PS1: "[ $$(whoami) | \\w ] "
