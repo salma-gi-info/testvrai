@@ -38,3 +38,19 @@ def delete_collection(request, id):
         collection.delete()
         return redirect('collection_all')  
     return render(request, 'delete_collection.html', {'collection': collection})
+
+
+def edit_collection(request, n):
+    collection = get_object_or_404(Collec, id=n)
+
+    if request.method == "POST":
+        form = CollecForm(request.POST, instance=collection)
+        if form.is_valid():
+           
+            collection = form.save(commit=False)
+            collection.save()
+            return redirect('collection_detail', n=collection.id)
+    else:
+        form = CollecForm(instance=collection)
+
+    return render(request, 'edit_collection.html', {'form': form, 'collection': collection})

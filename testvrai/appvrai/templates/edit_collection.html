@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Collection</title>
+    <title>Modifier Collection</title>
 </head>
 <body>
-    <h1>Add a New Collection</h1>
+    <h1>Modifier la Collection</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
-       
+        <button type="submit">Sauvegarder les modifications</button>
     </form>
+    <a href="{% url 'collection_all' %}">Retour à la liste des collections</a>
 </body>
 </html>
