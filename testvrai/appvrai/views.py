@@ -26,7 +26,15 @@ def new_collection(request):
             collection = form.save(commit=False)
             collection. creation_date= timezone.now()  
             collection.save()
-            return redirect('collection_detail', n=collection.id)  # Redirect a la page de detail de la collection 
+            return redirect('collection_detail', n=collection.id) 
     else:
         form = CollecForm()
     return render(request, 'new_collection.html', {'form': form})
+
+
+def delete_collection(request, id):
+    collection = get_object_or_404(Collec, id=id)
+    if request.method == 'POST':
+        collection.delete()
+        return redirect('collection_all')  
+    return render(request, 'delete_collection.html', {'collection': collection})
