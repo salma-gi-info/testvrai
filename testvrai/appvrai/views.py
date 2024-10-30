@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+
+from .models import Collec
 
 # Create your views here.
 
@@ -7,3 +9,6 @@ def index(request):
 
 def about(request):
     return render(request,'about.html')
+def collection_detail(request, n):
+    collection = get_object_or_404(Collec, id=n)
+    return render(request, 'collection_detail.html', {'collection': collection})
