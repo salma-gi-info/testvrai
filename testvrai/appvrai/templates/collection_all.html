@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Liste des Collections</h1>
-<table class="table table-striped">
+<table class="table table-striped" >
     <thead>
         <tr>
             <th>Title</th>
@@ -20,7 +20,7 @@
             <td>{{collection.date}}</td>
             <td>
                 <a href="{% url 'collection_detail' collection.id %}" class="btn btn-info">Détails</a>
-                
+                <a href="{% url 'delete_collection' collection.id %}" class="btn btn-danger">Supprimer</a>
             </td>
         </tr>
         {% endfor %}
