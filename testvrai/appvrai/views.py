@@ -1,6 +1,7 @@
-from django.shortcuts import get_object_or_404, render
-
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Collec
+from .forms import CollecForm
+from django.utils import timezone
 
 # Create your views here.
 
@@ -16,3 +17,16 @@ def collection_detail(request, n):
 def collection_all(request):
     collections=Collec.objects.all()
     return render(request,'collection_all.html',{'collections':collections})
+
+
+def new_collection(request):
+    if request.method == "POST":
+        form = CollecForm(request.POST)
+        if form.is_valid():
+            collection = form.save(commit=False)
+            collection. creation_date= timezone.now()  
+            collection.save()
+            return redirect('collection_detail', n=collection.id)  # Redirect a la page de detail de la collection 
+    else:
+        form = CollecForm()
+    return render(request, 'new_collection.html', {'form': form})
