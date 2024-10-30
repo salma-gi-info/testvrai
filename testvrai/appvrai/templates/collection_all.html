@@ -1,0 +1,30 @@
+
+
+{% block title %}Liste des Collections{% endblock %}
+
+{% block content %}
+<h1>Liste des Collections</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>description</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for collection in collections %}
+        <tr>
+            <td>{{ collection.title }}</td>
+            <td>{{ collection.description }}</td>
+            <td>{{collection.date}}</td>
+            <td>
+                <a href="{% url 'collection_detail' collection.id %}" class="btn btn-info">Détails</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
